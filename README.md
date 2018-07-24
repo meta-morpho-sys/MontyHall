@@ -1,3 +1,3 @@
 # MontyHall
 
-Exploring probabilities of how right human intuition can be.
+Exploring probabilities of how reliable human intuition can be.
