@@ -13,7 +13,6 @@ Game.prototype.isBoxEmpty = function(box){
         console.log('prize');
         return false;
     }
-    }
 };
 
 // returns a string

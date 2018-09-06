@@ -6,14 +6,6 @@ describe('Game', function () {
         expect(game.isBoxEmpty).toBeTruthy();
     });
 
-    // it('assigns the selected box to contain the prize', function(){
-    //     game = new Game();
-    //     var selectedBox = game.boxStruma;
-    //     spyOn(Math, 'random').and.returnValue(0.5);
-    //     game.setPrize();
-    //     expect(game.isBoxEmpty(selectedBox)).toBeFalsy();
-    // });
-
     it('assigns the selected box to contain the prize', function(){
         game = new Game();
         spyOn(Math, 'random').and.returnValue(0.5);
