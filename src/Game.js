@@ -1,8 +1,8 @@
 function Game(){
-    this.boxYantra = 'empty.1';
-    this.boxStruma = 'empty.2';
-    this.boxMezdra = 'empty.3';
-    this.boxes = [this.boxYantra, this.boxStruma, this.boxMezdra]
+    this.boxOne = 'empty.1';
+    this.boxTwo = 'empty.2';
+    this.boxThree = 'empty.3';
+    this.boxes = [this.boxOne, this.boxTwo, this.boxThree]
 }
 
 Game.prototype.isBoxEmpty = function(box){
@@ -17,8 +17,7 @@ Game.prototype.isBoxEmpty = function(box){
 
 // returns a string
 Game.prototype.setPrize = function() {
-    var selectedBox;
-    return selectedBox = this.boxes[Math.floor(Math.random() * this.boxes.length)] = 'with prize';
+    return this.boxes[Math.floor(Math.random() * this.boxes.length)] = 'with prize';
 };
 
 Game.prototype.resetBoxes = function(){
