@@ -3,7 +3,6 @@ describe('Game', function () {
 
     beforeEach(function() {
         montyHall = new Game();
-        player = jasmine.createSpyObj('player', ['selectBox', 'makeFinalChoice']);
     });
 
     it('has three empty boxes at the beginning', function(){
@@ -11,7 +10,7 @@ describe('Game', function () {
     });
 
     it('assigns the selected box to contain the prize', function(){
-        spyOn(Math, 'random').and.returnValue(0.5);
+        spyOn(Math, 'random').and.returnValue(0);
         var selectedBox = montyHall.setPrize();
         expect(montyHall.isBoxEmpty(selectedBox)).toBeFalsy();
     });
@@ -20,5 +19,12 @@ describe('Game', function () {
         montyHall.setPrize();
         montyHall.resetBoxes();
         expect(montyHall.isBoxEmpty).toBeTruthy()
+    });
+
+    it('picks a box for the player', function(){
+        // return value 0-0.3 --> the 0th element (boxOne)
+        spyOn(Math, 'random').and.returnValue(0);
+        montyHall.selectBox();
+        expect(montyHall.playersChoice).toEqual(0)
     });
 });

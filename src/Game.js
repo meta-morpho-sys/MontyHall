@@ -1,8 +1,9 @@
 function Game(){
-    this.boxOne = 'empty.1';
-    this.boxTwo = 'empty.2';
-    this.boxThree = 'empty.3';
-    this.boxes = [this.boxOne, this.boxTwo, this.boxThree]
+    this.boxOne = 'empty1';
+    this.boxTwo = 'empty2';
+    this.boxThree = 'empty3';
+    this.boxes = [this.boxOne, this.boxTwo, this.boxThree];
+    this.playersChoice = null;
 }
 
 Game.prototype.isBoxEmpty = function(box){
@@ -26,5 +27,8 @@ Game.prototype.resetBoxes = function(){
     })
 };
 
-
+Game.prototype.selectBox = function() {
+  var selectedBoxIndex = Math.floor(Math.random() * this.boxes.length);
+    return this.playersChoice = selectedBoxIndex;
+};
 
