@@ -6,7 +6,7 @@ describe('Game', function () {
         expect(game.isBoxEmpty).toBeTruthy();
     });
 
-    it('sets the selected box to be with prize', function(){
+    it('assigns the selected box to contain the prize', function(){
         game = new Game();
         var selectedBox = game.boxes[1];
         spyOn(Math, 'random').and.returnValue(0.5);
@@ -15,6 +15,7 @@ describe('Game', function () {
     });
 
     it('resets the boxes to be empty', function(){
+        game = new Game();
         playedBoxes = game.setPrize();
         game.resetBoxes();
         expect(game.isBoxEmpty).toBeTruthy()

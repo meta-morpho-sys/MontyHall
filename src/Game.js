@@ -8,10 +8,10 @@ function Game(){
 Game.prototype.isBoxEmpty = function(){
     this.boxes.forEach(function(box){
         if (box.startsWith('empty')){
-            console.log(' А л е к с а н д р а ');
+            console.log('empty');
             return true
         } else {
-            console.log(' Alexandra');
+            console.log('prize');
             return false;
         }
     });
@@ -22,5 +22,10 @@ Game.prototype.setPrize = function() {
 };
 
 Game.prototype.resetBoxes = function(){
-    this.boxes = [boxYantra, boxStruma, boxMezdra]
+    this.boxes.forEach(function(box){
+        box = 'empty'
+    })
 };
+
+
+
