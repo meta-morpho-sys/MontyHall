@@ -16,9 +16,12 @@ Game.prototype.isBoxEmpty = function(box){
     }
 };
 
+Game.prototype.getBoxNumber = function () {
+    return Math.floor(Math.random() * this.boxes.length);
+};
 // returns a string
 Game.prototype.setPrize = function() {
-    return this.prize = this.boxes[Math.floor(Math.random() * this.boxes.length)] = 'with prize';
+    return this.prize = this.boxes[this.getBoxNumber()] = 'with prize';
 };
 
 Game.prototype.resetBoxes = function(){
@@ -28,8 +31,8 @@ Game.prototype.resetBoxes = function(){
 };
 
 Game.prototype.selectBox = function() {
-  var selectedBoxIndex = Math.floor(Math.random() * this.boxes.length);
-    return this.playersChoice = selectedBoxIndex;
+  var selectedBoxIndex = this.getBoxNumber();
+  return this.playersChoice = selectedBoxIndex;
 };
 
 Game.prototype.openBox = function() {
