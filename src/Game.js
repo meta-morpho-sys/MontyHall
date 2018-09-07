@@ -18,7 +18,7 @@ Game.prototype.isBoxEmpty = function(box){
 
 // returns a string
 Game.prototype.setPrize = function() {
-    return this.boxes[Math.floor(Math.random() * this.boxes.length)] = 'with prize';
+    return this.prize = this.boxes[Math.floor(Math.random() * this.boxes.length)] = 'with prize';
 };
 
 Game.prototype.resetBoxes = function(){
@@ -32,3 +32,10 @@ Game.prototype.selectBox = function() {
     return this.playersChoice = selectedBoxIndex;
 };
 
+Game.prototype.openBox = function() {
+    var that = this;
+    function isOpenable(boxValue) {
+        return boxValue!== that.boxes[that.playersChoice] && boxValue !== that.prize;
+    }
+    return this.boxes.find(isOpenable);
+};

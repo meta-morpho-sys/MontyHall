@@ -27,4 +27,22 @@ describe('Game', function () {
         montyHall.selectBox();
         expect(montyHall.playersChoice).toEqual(0)
     });
+
+
+    it('opens one of the remaining two boxes', function(){
+        spyOn(Math, 'random').and.returnValue(0);
+        var selectedBox = montyHall.selectBox();
+        alert('players box ' + selectedBox);
+
+        jasmine.getEnv().allowRespy(true);
+        spyOn(Math, 'random').and.returnValue(0.7);
+        var prize = montyHall.setPrize();
+        alert('prize ' + prize);
+
+        alert(montyHall.boxes);
+
+        expect(montyHall.openBox()).toEqual('empty2');
+        expect(montyHall.openBox()).not.toEqual(selectedBox);
+        expect(montyHall.openBox()).not.toEqual(prize);
+    })
 });
