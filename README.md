@@ -6,7 +6,8 @@ From [Wikipedia Monty_Hall_problem](https://en.wikipedia.org/wiki/Monty_Hall_pro
 
 
 ###### My program is exploring whether it is more probable to win:
-- if keeping the initial choice or
-- if switching to the box that wasn't opened by Host nor was subject of players's first choice.
+###### - by sticking to the initial choice 
+###### or
+###### - by switching to the box that wasn't opened by Host nor was subject of players's first choice.
 
 How reliable human intuition can be....
