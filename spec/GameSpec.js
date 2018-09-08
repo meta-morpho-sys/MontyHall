@@ -35,10 +35,7 @@ describe('Host', function () {
             spyOn(Math, 'random').and.returnValue(0);
             var playersBox = host.getPlayersBox();
 
-            var optionedBox = host.boxes[0];
-            var openedBox = host.getOpenBox();
-
-            expect(openedBox).toBeGreaterThan(optionedBox);
+            expect(host.getOpenBox()).toContain(1, 2);
             expect(host.getOpenBox()).not.toEqual(playersBox);
             expect(host.getOpenBox()).not.toEqual(prize);
         });
