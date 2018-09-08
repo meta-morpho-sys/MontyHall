@@ -43,16 +43,15 @@ Host.prototype.getPlayersBox = function() {
 // When the prizeBox and playersBox coincide, this method will pick out randomly one of the two remaining boxes
 Host.prototype.getOpenBox = function() {
     var that = this;
-
     // check which boxes are openable
     function isOpenable(boxValue) {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
     // if the prizeBox and playersBox coincide pick randomly the number of the remaining two.
     var result = this.boxes.filter(isOpenable);
-    return result;
+    return this.getBoxNum(result);
 };
 
 Host.prototype.getBoxNum = function (array) {
-    return Math.floor(Math.random() * array.length);
+    return Math.round(Math.random() * array.length);
 };
