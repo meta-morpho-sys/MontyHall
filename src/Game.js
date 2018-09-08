@@ -25,7 +25,7 @@ Game.prototype.resetBoxes = function(){
     this.playersBox = null
 };
 
-Game.prototype.selectBox = function() {
+Game.prototype.selectPlayersBox = function() {
   var selectedBoxIndex = this.getBoxNumber();
   return this.playersBox = selectedBoxIndex;
 };

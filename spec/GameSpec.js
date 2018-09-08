@@ -13,16 +13,16 @@ describe('Game', function () {
 
     it('> resets the boxes to be empty', function(){
         host.setPrize();
-        host.selectBox();
+        host.selectPlayersBox();
         host.resetBoxes();
         expect(host.prizeBox).toBeNull();
         expect(host.playersBox).toBeNull()
     });
 
-    xit('> picks a box for the player', function(){
+    it('> picks a box for the player', function(){
         // return value 0-0.3 --> the 0th element (boxOne)
         spyOn(Math, 'random').and.returnValue(0);
-        host.selectBox();
+        host.selectPlayersBox();
         expect(host.playersBox).toEqual(0)
     });
 
@@ -33,7 +33,7 @@ describe('Game', function () {
 
             jasmine.getEnv().allowRespy(true);
             spyOn(Math, 'random').and.returnValue(0);
-            var playersBox = host.selectBox();
+            var playersBox = host.selectPlayersBox();
 
             var optionedBox = host.boxes[0];
             var openedBox = host.openBox();
@@ -49,7 +49,7 @@ describe('Game', function () {
 
             jasmine.getEnv().allowRespy(true);
             spyOn(Math, 'random').and.returnValue(0.7);
-            var selectedBox = host.selectBox();
+            var selectedBox = host.selectPlayersBox();
 
             expect(host.openBox()).toEqual(1);
             expect(host.openBox()).not.toEqual(selectedBox);
