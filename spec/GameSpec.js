@@ -36,11 +36,11 @@ describe('Game', function () {
             var playersBox = host.selectPlayersBox();
 
             var optionedBox = host.boxes[0];
-            var openedBox = host.openBox();
+            var openedBox = host.getOpenBox();
 
             expect(openedBox).toBeGreaterThan(optionedBox);
-            expect(host.openBox()).not.toEqual(playersBox);
-            expect(host.openBox()).not.toEqual(prize);
+            expect(host.getOpenBox()).not.toEqual(playersBox);
+            expect(host.getOpenBox()).not.toEqual(prize);
         });
 
         it(">> when the prizeBox box and and player's box differ", function(){
@@ -51,9 +51,9 @@ describe('Game', function () {
             spyOn(Math, 'random').and.returnValue(0.7);
             var selectedBox = host.selectPlayersBox();
 
-            expect(host.openBox()).toEqual(1);
-            expect(host.openBox()).not.toEqual(selectedBox);
-            expect(host.openBox ()).not.toEqual(prize);
+            expect(host.getOpenBox()).toEqual(1);
+            expect(host.getOpenBox()).not.toEqual(selectedBox);
+            expect(host.getOpenBox ()).not.toEqual(prize);
         })
     })
 });

@@ -30,7 +30,7 @@ Game.prototype.selectPlayersBox = function() {
   return this.playersBox = selectedBoxIndex;
 };
 
-Game.prototype.openBox = function() {
+Game.prototype.getOpenBox = function() {
     var that = this;
     function isOpenable(boxValue) {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
