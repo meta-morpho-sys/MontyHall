@@ -27,16 +27,18 @@ describe('Host', function () {
     });
 
     describe('> opens another box', function(){
-        describe(">> when the prizeBox box and player's box coincide", function() {
-            it(">> randomly opens box1", function() {
+        describe(">> when the prizeBox box and player's box coincide on box0", function() {
+            var prize, playersBox;
+            beforeEach(function(){
                 spyOn(Math, 'random').and.returnValue(0);
-                var prize = host.setPrize();
+                prize = host.setPrize();
 
                 jasmine.getEnv().allowRespy(true);
                 spyOn(Math, 'random').and.returnValue(0);
-                var playersBox = host.getPlayersBox();
+                playersBox = host.getPlayersBox();
+            });
 
-                // jasmine.getEnv().allowRespy(true);
+            it(">> randomly opens box1", function() {
                 spyOn(Math, 'random').and.returnValue(0.5);
                 expect(host.getOpenBox()).toEqual(1);
                 expect(host.getOpenBox()).not.toEqual(playersBox);
@@ -44,14 +46,6 @@ describe('Host', function () {
             });
 
             it(">> randomly opens box2", function() {
-                spyOn(Math, 'random').and.returnValue(0);
-                var prize = host.setPrize();
-
-                jasmine.getEnv().allowRespy(true);
-                spyOn(Math, 'random').and.returnValue(0);
-                var playersBox = host.getPlayersBox();
-
-                // jasmine.getEnv().allowRespy(true);
                 spyOn(Math, 'random').and.returnValue(0.8);
                 expect(host.getOpenBox()).toEqual(2);
                 expect(host.getOpenBox()).not.toEqual(playersBox);
