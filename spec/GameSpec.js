@@ -6,7 +6,7 @@ describe('Game', function () {
     });
 
     xit('has three empty boxes at the beginning', function(){
-        expect(montyHall.isBoxEmpty).toBeTruthy();
+        expect(host.isBoxEmpty).toBeTruthy();
     });
 
     it('> assigns the selected box to contain the prizeBox', function(){
@@ -17,15 +17,17 @@ describe('Game', function () {
 
     it('> resets the boxes to be empty', function(){
         host.setPrize();
+        host.selectBox();
         host.resetBoxes();
-        expect(host.prizeBox).toBeNull()
+        expect(host.prizeBox).toBeNull();
+        expect(host.playersBox).toBeNull()
     });
 
     xit('> picks a box for the player', function(){
         // return value 0-0.3 --> the 0th element (boxOne)
         spyOn(Math, 'random').and.returnValue(0);
         host.selectBox();
-        expect(host.playersChoice).toEqual(0)
+        expect(host.playersBox).toEqual(0)
     });
 
     xdescribe('> opens another box', function(){

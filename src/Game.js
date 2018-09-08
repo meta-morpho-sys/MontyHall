@@ -1,7 +1,7 @@
 function Game(){
     this.boxes = [0, 1, 2]; // these are my boxes
     this.prizeBox = null;
-    this.playersChoice = null;
+    this.playersBox = null;
 }
 // model "box" as an integer 0,1,2
 // have this.prizeBox be assigned an integer instead of a string
@@ -28,18 +28,19 @@ Game.prototype.setPrize = function() {
 };
 
 Game.prototype.resetBoxes = function(){
-    this.prizeBox = null
+    this.prizeBox = null;
+    this.playersBox = null
 };
 
 Game.prototype.selectBox = function() {
   var selectedBoxIndex = this.getBoxNumber();
-  return this.playersChoice = selectedBoxIndex;
+  return this.playersBox = selectedBoxIndex;
 };
 
 Game.prototype.openBox = function() {
     var that = this;
     function isOpenable(boxValue) {
-        return boxValue!== that.boxes[that.playersChoice] && boxValue !== that.prizeBox;
+        return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
     return this.boxes.find(isOpenable);
 };
