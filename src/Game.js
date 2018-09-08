@@ -1,21 +1,14 @@
 function Game(){
-    this.boxes = [0, 1, 2]; // these are my boxes
+    this.boxes = [0, 1, 2]; // these are my boxes 0, 1, 2
     this.prizeBox = null;
     this.playersBox = null;
 }
 // model "box" as an integer 0,1,2
 // have this.prizeBox be assigned an integer instead of a string
 // now you can get rid of names like 'indexOfThis', 'indexOfThat'
-// have a this.player and make it behave like this.prizeBox (
-// Game.prototype.isBoxEmpty = function(box){
-//     if (this.boxes[box].startsWith('empty')){
-//         console.log('empty');
-//         return true
-//     } else {
-//         console.log('prizeBox');
-//         return false;
-//     }
-// };
+// have a this.player and make it behave like this.prizeBox
+// get rid of boxes array?
+
 
 Game.prototype.getBoxNumber = function () {
     return Math.floor(Math.random() * this.boxes.length);

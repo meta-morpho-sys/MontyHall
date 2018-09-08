@@ -5,10 +5,6 @@ describe('Game', function () {
         host = new Game();
     });
 
-    xit('has three empty boxes at the beginning', function(){
-        expect(host.isBoxEmpty).toBeTruthy();
-    });
-
     it('> assigns the selected box to contain the prizeBox', function(){
         spyOn(Math, 'random').and.returnValue(0);
         host.setPrize();
@@ -40,11 +36,11 @@ describe('Game', function () {
             var playersBox = host.selectBox();
 
             var optionedBox = host.boxes[0];
-            var openedBox = host.getOpenBox();
+            var openedBox = host.openBox();
 
             expect(openedBox).toBeGreaterThan(optionedBox);
-            expect(host.getOpenBox()).not.toEqual(playersBox);
-            expect(host.getOpenBox()).not.toEqual(prize);
+            expect(host.openBox()).not.toEqual(playersBox);
+            expect(host.openBox()).not.toEqual(prize);
         });
 
         it(">> when the prizeBox box and and player's box differ", function(){
@@ -55,9 +51,9 @@ describe('Game', function () {
             spyOn(Math, 'random').and.returnValue(0.7);
             var selectedBox = host.selectBox();
 
-            expect(host.getOpenBox()).toEqual('empty2');
-            expect(host.getOpenBox()).not.toEqual(selectedBox);
-            expect(host.getOpenBox()).not.toEqual(prize);
+            expect(host.openBox()).toEqual(1);
+            expect(host.openBox()).not.toEqual(selectedBox);
+            expect(host.openBox ()).not.toEqual(prize);
         })
     })
 });
