@@ -24,7 +24,7 @@ function Host(){
 
 // sets one of the boxes < 0,1 or 2 > to be the prizeBox
 Host.prototype.setPrize = function() {
-    var boxNum = this.getBoxNumber();
+    var boxNum = this.getBoxNum(this.boxes);
     return this.prizeBox = this.boxes[boxNum];
 };
 
@@ -35,7 +35,7 @@ Host.prototype.resetBoxes = function(){
 
 // Host acts as player and picks a box
 Host.prototype.getPlayersBox = function() {
-  var boxNum = this.getBoxNumber();
+  var boxNum = this.getBoxNum(this.boxes);
   return this.playersBox = boxNum;
 };
 
@@ -48,12 +48,11 @@ Host.prototype.getOpenBox = function() {
     function isOpenable(boxValue) {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
-
     // if the prizeBox and playersBox coincide pick randomly the number of the remaining two.
-    return this.boxes.filter(isOpenable);
+    var result = this.boxes.filter(isOpenable);
+    return result;
 };
 
-
-Host.prototype.getBoxNumber = function () {
-    return Math.floor(Math.random() * this.boxes.length);
+Host.prototype.getBoxNum = function (array) {
+    return Math.floor(Math.random() * array.length);
 };
