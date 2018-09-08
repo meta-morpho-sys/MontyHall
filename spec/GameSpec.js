@@ -43,7 +43,7 @@ describe('Host', function () {
             expect(host.getOpenBox()).not.toEqual(prize);
         });
 
-        it(">> when the prizeBox box and and player's box differ", function(){
+        xit(">> when the prizeBox box and and player's box differ", function(){
             spyOn(Math, 'random').and.returnValue(0);
             var prize = host.setPrize();
 
