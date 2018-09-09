@@ -10,12 +10,6 @@ My program is exploring whether it is more probable to win:
 -- if switching to the box that wasn't opened by Host nor was subject of players's first choice.
 */
 
-// model "box" as an integer 0,1,2
-// have this.prizeBox be assigned an integer instead of a string
-// now you can get rid of names like 'indexOfThis', 'indexOfThat'
-// have a this.player and make it behave like this.prizeBox
-// get rid of boxes array?
-
 function Host(){
     this.boxes = [0, 1, 2]; // these are my boxes: 0, 1, 2
     this.prizeBox = null;   // null here means not yet assigned
@@ -25,7 +19,7 @@ function Host(){
 
 // sets one of the boxes < 0,1 or 2 > to be the prizeBox
 Host.prototype.setPrize = function() {
-    var boxNum = this.getBoxNum(this.boxes);
+    var boxNum = this._chooseRandomly(this.boxes);
     return this.prizeBox = this.boxes[boxNum];
 };
 
@@ -36,10 +30,8 @@ Host.prototype.resetBoxes = function(){
 
 // Host acts as player and picks a box
 Host.prototype.getPlayersBox = function() {
-  var boxNum = this.getBoxNum(this.boxes);
-  var playersBox = this.playersBox = boxNum;
-  console.log('Player chose box number ' + playersBox );
-  return playersBox;
+  var boxNum = this._chooseRandomly(this.boxes);
+  return this.playersBox = boxNum;
 };
 
 // Returns the number of box that is not the box with prize nor the box chosen by the player.
@@ -51,13 +43,14 @@ Host.prototype.getOpenBox = function() {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
     var result = this.boxes.filter(isOpenable);
-    this.openedBox = this.getBoxNum(result);
-    console.log('Box number ' + this.openedBox + ' is empty!');
-    return this.openedBox;
+    return this.openedBox = this._chooseRandomly(result);
 };
 
-Host.prototype.getBoxNum = function (array) {
-    return Math.round(Math.random() * array.length);
+
+// Returns randomly selected element of the array.
+Host.prototype._chooseRandomly = function (array) {
+    var randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
 };
 
 Host.prototype.makeFinalChoice = function () {
@@ -67,20 +60,10 @@ Host.prototype.makeFinalChoice = function () {
         return boxValue !== that.openedBox;
     }
     var result = this.boxes.filter(isEligible);
-    this.finalChoice = this.getBoxNum(result);
+    this.finalChoice = this._chooseRandomly(result);
     if (this.finalChoice === this.prizeBox) {
         return 'Win';
     } else {
         return 'Lost';
     }
 };
-
-
-
-// How to make player make his final choice?
-// Make is similar to getPlayersBox but with the restriction that the choice can be made out of this.playersBox and not openedBox.
-//
-// print out the statistics of confirmed choice or switch
-// print out the outcome Win or Lose
-
-
