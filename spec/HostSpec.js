@@ -27,8 +27,17 @@ describe('Host', function () {
     });
 
     describe('> opens another box', function(){
+        var prize;
+
+        beforeEach(function(){
+            spyOn(Math, 'random').and.returnValue(0);
+            prize = host.setPrize();
+
+            jasmine.getEnv().allowRespy(true);
+        });
+
         describe(">> when the prizeBox box and player's box coincide on box0", function() {
-            var prize, playersBox;
+            var playersBox;
             beforeEach(function(){
                 spyOn(Math, 'random').and.returnValue(0);
                 prize = host.setPrize();
@@ -51,20 +60,14 @@ describe('Host', function () {
                 expect(host.getOpenBox()).not.toEqual(playersBox);
                 expect(host.getOpenBox()).not.toEqual(prize);
             });
-
         });
 
             it(">> when the prizeBox box and and player's box differ", function(){
-            spyOn(Math, 'random').and.returnValue(0);
-            var prize = host.setPrize();
-
-            jasmine.getEnv().allowRespy(true);
             spyOn(Math, 'random').and.returnValue(0.7);
             var selectedBox = host.getPlayersBox();
-
             expect(host.getOpenBox()).toEqual(1);
             expect(host.getOpenBox()).not.toEqual(selectedBox);
             expect(host.getOpenBox ()).not.toEqual(prize);
         })
-    })
+    });
 });
