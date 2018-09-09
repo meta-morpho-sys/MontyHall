@@ -3,7 +3,7 @@ Host has 3 boxes [0, 1, 2] and sets one of them to be with a prize (say box 0).
 On second turn Host picks one box to be the box chosen by the Player. (say box 2).
 
 Once Host knows which box was chosen by the player, it opens another box which doesn't contain a prize (say box 1)
-Player is left with the choice to stick to his   initial preference (box 2) or
+Player is left with the choice to stick to his initial preference (box 2) or
 to switch to the other box (box 0).
 My program is exploring whether it is more probable to win:
 -- if keeping the initial choice or
@@ -36,20 +36,23 @@ Host.prototype.resetBoxes = function(){
 // Host acts as player and picks a box
 Host.prototype.getPlayersBox = function() {
   var boxNum = this.getBoxNum(this.boxes);
-  return this.playersBox = boxNum;
+  var playersBox = this.playersBox = boxNum;
+  console.log('Player chose box number ' + playersBox );
+  return playersBox;
 };
 
-// Returns number of box that is not the box with prize or the box chosen by the player.
-// When the prizeBox and playersBox coincide, this method will pick out randomly one of the two remaining boxes
+// Returns the number of box that is not the box with prize nor the box chosen by the player.
+// When the prizeBox and playersBox coincide, this method will pick out randomly one of the two remaining boxes.
 Host.prototype.getOpenBox = function() {
     var that = this;
-    // check which boxes are openable
+
     function isOpenable(boxValue) {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
-    // if the prizeBox and playersBox coincide pick randomly the number of the remaining two.
     var result = this.boxes.filter(isOpenable);
-    return this.getBoxNum(result);
+    var openedBox = this.getBoxNum(result);
+    console.log('Box number ' + openedBox + ' is empty!');
+    return openedBox;
 };
 
 Host.prototype.getBoxNum = function (array) {
