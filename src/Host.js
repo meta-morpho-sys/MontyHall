@@ -17,9 +17,10 @@ My program is exploring whether it is more probable to win:
 // get rid of boxes array?
 
 function Host(){
-    this.boxes = [0, 1, 2]; // these are my boxes 0, 1, 2
-    this.prizeBox = null;
-    this.playersBox = null;
+    this.boxes = [0, 1, 2]; // these are my boxes: 0, 1, 2
+    this.prizeBox = null;   // null here means not yet assigned
+    this.playersBox = null; // ditto
+    this.openedBox = null;  // ditto
 }
 
 // sets one of the boxes < 0,1 or 2 > to be the prizeBox
@@ -50,9 +51,9 @@ Host.prototype.getOpenBox = function() {
         return boxValue!== that.boxes[that.playersBox] && boxValue !== that.prizeBox;
     }
     var result = this.boxes.filter(isOpenable);
-    var openedBox = this.getBoxNum(result);
-    console.log('Box number ' + openedBox + ' is empty!');
-    return openedBox;
+    this.openedBox = this.getBoxNum(result);
+    console.log('Box number ' + this.openedBox + ' is empty!');
+    return this.openedBox;
 };
 
 Host.prototype.getBoxNum = function (array) {
