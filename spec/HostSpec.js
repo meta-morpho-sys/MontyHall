@@ -72,28 +72,38 @@ describe('Host', function () {
     });
 
 
-    describe('makeFinalChoice', function() {
+    describe('makes Final Choice', function() {
         var prize, playersBox, openedBox;
+        describe("when prize and player's initial choice coincide", function() {
+            beforeEach(function() {
+                spyOn(Math, 'random').and.returnValue(0);
+                prize = host.setPrize();
 
-        beforeEach(function() {
-            spyOn(Math, 'random').and.returnValue(0);
-            prize = host.setPrize();
+                jasmine.getEnv().allowRespy(true);
 
-            jasmine.getEnv().allowRespy(true);
+                spyOn(Math, 'random').and.returnValue(0);
+                playersBox = host.getPlayersBox();
 
-            spyOn(Math, 'random').and.returnValue(0);
-            playersBox = host.getPlayersBox();
+                spyOn(Math, 'random').and.returnValue(0.8);
+                openedBox = host.getOpenBox();
+            });
 
-            spyOn(Math, 'random').and.returnValue(0.8);
-            openedBox = host.getOpenBox();
+            it('>>player confirms his initial choice and wins', function() {
+                spyOn(Math, 'random').and.returnValue(0);
+                expect(host.makeFinalChoice()).toEqual('Win');
+                expect(host.finalChoice).toEqual(prize);
+                expect(host.finalChoice).not.toEqual(openedBox)
+            });
+
+            it('>>player switches to another box and loses', function() {
+                spyOn(Math, 'random').and.returnValue(0.5);
+                expect(host.makeFinalChoice()).toEqual('Lost');
+                expect(host.finalChoice).not.toEqual(prize);
+                expect(host.finalChoice).not.toEqual(openedBox)
+            })
         });
 
-        it('player confirms his initial choice and wins', function() {
-            spyOn(Math, 'random').and.returnValue(0);
-            expect(host.makeFinalChoice()).toEqual('Win');
-            expect(host.finalChoice).toEqual(prize);
-            expect(host.finalChoice).not.toEqual(openedBox)
-        })
+
         // Make is similar to getPlayersBox
         // choose from
         // this.playersBox and

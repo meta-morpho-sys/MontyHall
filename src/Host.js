@@ -69,9 +69,10 @@ Host.prototype.makeFinalChoice = function () {
     var result = this.boxes.filter(isEligible);
     this.finalChoice = this.getBoxNum(result);
     if (this.finalChoice === this.prizeBox) {
-        return 'Win'
-    } else
-    return this.finalChoice;
+        return 'Win';
+    } else {
+        return 'Lost';
+    }
 };
 
 
