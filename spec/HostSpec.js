@@ -48,7 +48,7 @@ describe('Host', function () {
             });
 
             it(">> randomly opens box1", function() {
-                spyOn(Math, 'random').and.returnValue(0.5);
+                spyOn(Math, 'random').and.returnValue(0.4);
                 expect(host.getOpenBox()).toEqual(1);
                 expect(host.getOpenBox()).not.toEqual(playersBox);
                 expect(host.getOpenBox()).not.toEqual(prize);
@@ -70,7 +70,6 @@ describe('Host', function () {
             expect(host.getOpenBox ()).not.toEqual(prize);
         })
     });
-
 
     describe('makes Final Choice', function() {
         var prize, playersBox, openedBox;
@@ -103,14 +102,35 @@ describe('Host', function () {
             })
         });
 
+        describe("when prize and player's initial choice differ", function () {
+            // set Math.random so as to result in the selected item
+            // from the array of length arrayLen
+            function forceSelection(arrayLen, selectedIndex) {
+                var randVal =  selectedIndex / arrayLen;
+                spyOn(Math, 'random').and.returnValue(randVal);
+            }
+            beforeEach(function() {
+                forceSelection(3, 0);
+                prize = host.setPrize();
+                alert(prize);
 
-        // Make is similar to getPlayersBox
-        // choose from
-        // this.playersBox and
-        // not this.openedBox.
+                jasmine.getEnv().allowRespy(true);
 
-        // print out the statistics of confirmed choice or switch
-        // print out the outcome Win or Lose
+                forceSelection(3, 1);
+                playersBox = host.getPlayersBox();
+                alert(playersBox);
 
+                forceSelection(1, 0);
+                openedBox = host.getOpenBox();
+                alert(openedBox);
+            });
+
+            it('>>player confirms his initial choice and loses', function() {
+                forceSelection(2, 1);
+                expect(host.makeFinalChoice()).toEqual('Lost');
+                expect(host.finalChoice).not.toEqual(prize);
+                expect(host.finalChoice).not.toEqual(openedBox)
+            });
+        })
     })
 });
