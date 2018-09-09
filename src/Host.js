@@ -59,3 +59,27 @@ Host.prototype.getOpenBox = function() {
 Host.prototype.getBoxNum = function (array) {
     return Math.round(Math.random() * array.length);
 };
+
+Host.prototype.makeFinalChoice = function () {
+    var that = this;
+    // is it eligible for the final choice?
+    function isEligible(boxValue) {
+        return boxValue !== that.openedBox;
+    }
+    var result = this.boxes.filter(isEligible);
+    this.finalChoice = this.getBoxNum(result);
+    if (this.finalChoice === this.prizeBox) {
+        return 'Win'
+    } else
+    return this.finalChoice;
+};
+
+
+
+// How to make player make his final choice?
+// Make is similar to getPlayersBox but with the restriction that the choice can be made out of this.playersBox and not openedBox.
+//
+// print out the statistics of confirmed choice or switch
+// print out the outcome Win or Lose
+
+
